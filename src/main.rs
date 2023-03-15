@@ -130,3 +130,4 @@ fn main() -> Result<(), Error> {
     unsafe {
         RegCloseKey(hkey);
     }
+}

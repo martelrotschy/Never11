@@ -5,7 +5,7 @@ use std::ptr::null_mut;
 use std::io::Error;
 
 fn main() -> Result<(), Error> {
-    // Open the HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate registry key.
+    // Open the HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate registry key.
     let mut hkey: HKEY = null_mut();
     let sub_key = "SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate";
     let result = unsafe {
@@ -47,7 +47,7 @@ fn main() -> Result<(), Error> {
         RegCloseKey(hkey);
     }
 
-    // Open the HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsStore registry key.
+    // Open the HKLM\SOFTWARE\Policies\Microsoft\WindowsStore registry key.
     let mut hkey: HKEY = null_mut();
     let sub_key = "SOFTWARE\\Policies\\Microsoft\\WindowsStore";
     let result = unsafe {
@@ -89,7 +89,7 @@ fn main() -> Result<(), Error> {
         RegCloseKey(hkey);
     }
 
-    // Open the HKEY_LOCAL_MACHINE\SYSTEM\Setup\UpgradeNotification registry key.
+    // Open the HKLM\SYSTEM\Setup\UpgradeNotification registry key.
     let mut hkey: HKEY = null_mut();
     let sub_key = "SYSTEM\\Setup\\UpgradeNotification";
     let result = unsafe {

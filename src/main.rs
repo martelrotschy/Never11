@@ -1,6 +1,7 @@
 use winapi::um::winreg::{HKEY_LOCAL_MACHINE, RegCreateKeyExW, RegSetValueExW, RegCloseKey};
-use winapi::shared::minwindef::{DWORD, HKEY, LPDWORD, LPBYTE, REG_DWORD, ERROR_SUCCESS};
-use winapi::shared::winerror::ERROR_FILE_NOT_FOUND;
+use winapi::shared::minwindef::{DWORD, HKEY, LPDWORD, LPBYTE};
+use winapi::shared::winerror::{ERROR_FILE_NOT_FOUND, ERROR_SUCCESS};
+use winapi::um::winnt::REG_DWORD;
 use std::ptr::null_mut;
 use std::io::Error;
 
@@ -21,7 +22,7 @@ fn main() -> Result<(), Error> {
             null_mut(),
         )
     };
-    if result != ERROR_SUCCESS {
+    if result != ERROR_SUCCESS.try_into().unwrap() {
         return Err(Error::last_os_error());
     }
     
@@ -38,7 +39,7 @@ fn main() -> Result<(), Error> {
             std::mem::size_of::<DWORD>() as DWORD,
         )
     };
-    if result != ERROR_SUCCESS {
+    if result != ERROR_SUCCESS.try_into().unwrap() {
         return Err(Error::last_os_error());
     }
     
@@ -63,7 +64,7 @@ fn main() -> Result<(), Error> {
             null_mut(),
         )
     };
-    if result != ERROR_SUCCESS {
+    if result != ERROR_SUCCESS.try_into().unwrap() {
         return Err(Error::last_os_error());
     }
     
@@ -80,7 +81,7 @@ fn main() -> Result<(), Error> {
             std::mem::size_of::<DWORD>() as DWORD,
         )
     };
-    if result != ERROR_SUCCESS {
+    if result != ERROR_SUCCESS.try_into().unwrap() {
         return Err(Error::last_os_error());
     }
     
@@ -105,7 +106,7 @@ fn main() -> Result<(), Error> {
             null_mut(),
         )
     };
-    if result != ERROR_SUCCESS {
+    if result != ERROR_SUCCESS.try_into().unwrap() {
         return Err(Error::last_os_error());
     }
     
@@ -122,7 +123,7 @@ fn main() -> Result<(), Error> {
             std::mem::size_of::<DWORD>() as DWORD,
         )
     };
-    if result != ERROR_SUCCESS {
+    if result != ERROR_SUCCESS.try_into().unwrap() {
         return Err(Error::last_os_error());
     }
     
@@ -130,4 +131,5 @@ fn main() -> Result<(), Error> {
     unsafe {
         RegCloseKey(hkey);
     }
+    Ok(())
 }

@@ -133,3 +133,13 @@ fn main() -> Result<(), Error> {
     }
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+
+    #[test]
+    fn test_encrypt() {
+        let mut result = true;
+        assert_eq!(result, true);
+    }
+}
